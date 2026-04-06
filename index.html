@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Puzzle Game</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #111;
+      color: white;
+      padding-top: 100px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 20px;
+      width: 140px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #hint {
+      margin-top: 15px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔐 Crack the Code</h1>
+<p>Solve this:</p>
+<p><b>(3 × 4) + (10 ÷ 2)</b></p>
+
+<input id="codeInput" placeholder="Enter code" />
+<br>
+<button onclick="checkCode()">Submit</button>
+
+<p id="message"></p>
+<p id="hint"></p>
+
+<script>
+let attempts = 0;
+
+function checkCode() {
+  const input = document.getElementById("codeInput").value.trim();
+  const correctCode = "17"; // Puzzle answer
+
+  if (input === correctCode) {
+    document.getElementById("message").innerText = "✅ Correct! Redirecting in 2 seconds...";
+    document.querySelector("button").disabled = true;
+
+    // SAFE redirect for testing
+    setTimeout(() => {
+      window.location.href = "https://www.google.com"; // Replace this with your Google Site URL later
+    }, 2000);
+
+  } else {
+    attempts++;
+    document.getElementById("message").innerText = "❌ Wrong! Try again.";
+
+    if (attempts === 2) {
+      document.getElementById("hint").innerText = "Hint: Multiply first, then divide, then add.";
+    }
+
+    if (attempts === 4) {
+      document.getElementById("hint").innerText = "Hint: (3×4)=12 and (10÷2)=5";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
