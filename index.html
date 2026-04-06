@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Puzzle Game</title>
+  <title>Hidden Code Puzzle</title>
   <style>
     body {
       font-family: Arial;
       text-align: center;
-      background: #111;
+      background: black;
       color: white;
-      padding-top: 100px;
+      padding-top: 50px;
+    }
+
+    img {
+      width: 300px;
+      margin: 20px;
+      border: 2px solid white;
     }
 
     input {
       padding: 10px;
-      font-size: 20px;
-      width: 140px;
+      font-size: 18px;
       text-align: center;
     }
 
     button {
       padding: 10px 20px;
-      font-size: 18px;
+      font-size: 16px;
       margin-top: 10px;
       cursor: pointer;
     }
@@ -31,50 +36,52 @@
     }
 
     #hint {
-      margin-top: 15px;
-      color: #aaa;
+      margin-top: 10px;
+      color: gray;
     }
   </style>
 </head>
 <body>
 
-<h1>🔐 Crack the Code</h1>
-<p>Solve this:</p>
-<p><b>(3 × 4) + (10 ÷ 2)</b></p>
+<h1>🕵️ Find the Hidden Code (Three Digit Numbers)	</h1>
+<p>The answer is hidden in the image...</p>
 
-<input id="codeInput" placeholder="Enter code" />
+<!-- 🔍 YOUR IMAGE HERE -->
+<img src="https://i.pinimg.com/736x/91/27/26/912726c90885c9586caa5a48b88420d4.jpg" alt="puzzle image">
+
 <br>
-<button onclick="checkCode()">Submit</button>
+
+<input id="answer" placeholder="Enter code">
+<br>
+<button onclick="checkAnswer()">Submit</button>
 
 <p id="message"></p>
 <p id="hint"></p>
 
 <script>
-let attempts = 0;
+let tries = 0;
+const correctAnswer = "431"; // 🔑 CHANGE THIS
 
-function checkCode() {
-  const input = document.getElementById("codeInput").value.trim();
-  const correctCode = "17"; // Puzzle answer
+function checkAnswer() {
+  const input = document.getElementById("answer").value;
 
-  if (input === correctCode) {
-    document.getElementById("message").innerText = "✅ Correct! Redirecting in 2 seconds...";
-    document.querySelector("button").disabled = true;
+  if (input === correctAnswer) {
+    document.getElementById("message").innerText = "✅ Correct... Redirecting";
 
-    // SAFE redirect for testing
     setTimeout(() => {
-      window.location.href = "https://www.google.com"; // Replace this with your Google Site URL later
+      window.location.href = "https://sites.google.com/view/axisreversal-congratulations"; // 🔁 CHANGE THIS
     }, 2000);
 
   } else {
-    attempts++;
-    document.getElementById("message").innerText = "❌ Wrong! Try again.";
+    tries++;
+    document.getElementById("message").innerText = "❌ Wrong answer";
 
-    if (attempts === 2) {
-      document.getElementById("hint").innerText = "Hint: Multiply first, then divide, then add.";
+    if (tries === 2) {
+      document.getElementById("hint").innerText = "Hint: Look very closely at the image...";
     }
 
-    if (attempts === 4) {
-      document.getElementById("hint").innerText = "Hint: (3×4)=12 and (10÷2)=5";
+    if (tries === 4) {
+      document.getElementById("hint").innerText = "Hint: The numbers are hidden in plain sight.";
     }
   }
 }
